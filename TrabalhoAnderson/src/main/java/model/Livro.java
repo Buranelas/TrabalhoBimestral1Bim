@@ -5,8 +5,8 @@ public class Livro {
     
     private String titulo;
     private String editora;
-    private String[ ] autores; //O Livro pode conter mais de um autor 
-    private String[] generos;//Podemos atribuir mais de um gênero para cada livro
+    private String autor; 
+    private String genero;
     private int nrPaginas;
     private int qtdEstoque;
     private double vlrVenda;
@@ -14,11 +14,11 @@ public class Livro {
     public Livro() {
     }
 
-    public Livro(String titulo, String editora, String[] autores, String[] generos, int nrPaginas, int qtdEstoque, double vlrVenda) {
+    public Livro(String titulo, String editora, String autor, String genero, int nrPaginas, int qtdEstoque, double vlrVenda) {
         this.titulo = titulo;
         this.editora = editora;
-        this.autores = autores;
-        this.generos = generos;
+        this.autor = autor;
+        this.genero = genero;
         this.nrPaginas = nrPaginas;
         this.qtdEstoque = qtdEstoque;
         this.vlrVenda = vlrVenda;
@@ -40,20 +40,20 @@ public class Livro {
         this.editora = editora;
     }
 
-    public String[] getAutores() {
-        return autores;
+    public String getAutor() {
+        return autor;
     }
 
-    public void setAutores(String[] autores) {
-        this.autores = autores;
+    public void setAutores(String autor) {
+        this.autor = autor;
     }
 
-    public String[] getGeneros() {
-        return generos;
+    public String getGenero() {
+        return genero;
     }
 
-    public void setGeneros(String[] generos) {
-        this.generos = generos;
+    public void setGenero(String genero) {
+        this.genero = genero;
     }
 
     public int getNrPaginas() {
@@ -79,13 +79,17 @@ public class Livro {
     public void setVlrVenda(double vlrVenda) {
         this.vlrVenda = vlrVenda;
     }
+    
+    public void atualizarQuantidadeEstoque(int quantidadeVendida) {
+    this.qtdEstoque -= quantidadeVendida;
+}
 
     @Override
     public String toString() {
         return "Livro{" + "\nTitulo=" + titulo 
                 + "\nEditora=" + editora 
-                + "\nAutores=" + autores 
-                + "\nGeneros=" + generos 
+                + "\nAutores=" + autor 
+                + "\nGeneros=" + genero 
                 + "\nNumero de Paginas=" + nrPaginas 
                 + "\n Quantidade em Estoque=" + qtdEstoque 
                 + "\n Valor de Venda=" + vlrVenda + '}';
