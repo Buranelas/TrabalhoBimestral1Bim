@@ -10,6 +10,10 @@ public class Cliente {
     public Cliente() {
     }
 
+    public Cliente(String nome) {
+        this.nome = nome;
+    }
+
     public Cliente(String nome, Endereco endereco, String telefone, String cpf) {
         this.nome = nome;
         this.endereco = endereco;

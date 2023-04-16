@@ -1,0 +1,9 @@
+model\Venda.class
+model\Cliente.class
+model\Endereco.class
+model\Estoque.class
+model\FormaPagamento.class
+model\Livraria.class
+model\Livro.class
+com\mycompany\trabalhoanderson\Main.class
+model\ItemVenda.class

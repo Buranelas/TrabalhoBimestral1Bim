@@ -2,7 +2,7 @@ package model;
 
 public class Endereco {
  
-    private int numero;
+    private String numero;
     private String rua;
     private String bairro;
     private String cidade;
@@ -12,7 +12,7 @@ public class Endereco {
     public Endereco() {
     }
 
-    public Endereco(int numero, String rua, String bairro, String cidade, String estado, String pais) {
+    public Endereco(String numero, String rua, String bairro, String cidade, String estado, String pais) {
         this.numero = numero;
         this.rua = rua;
         this.bairro = bairro;
@@ -21,11 +21,11 @@ public class Endereco {
         this.pais = pais;
     }
 
-    public int getNumero() {
+    public String getNumero() {
         return numero;
     }
 
-    public void setNumero(int numero) {
+    public void setNumero(String numero) {
         this.numero = numero;
     }
 
@@ -68,6 +68,8 @@ public class Endereco {
     public void setPais(String pais) {
         this.pais = pais;
     }
+
+    
 
     @Override
     public String toString() {

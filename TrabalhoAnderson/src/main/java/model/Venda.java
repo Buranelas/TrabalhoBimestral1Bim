@@ -5,56 +5,103 @@ import java.util.ArrayList;
 
 public class Venda {
     
-    private ArrayList<Livro> livro;
-    private ArrayList<FormaPagamento> formaPagamento;
+    private Cliente cliente;
+    private ArrayList<ItemVenda> itens;
+    private ArrayList<FormaPagamento> formasPagamento;
     private double valorTotal;
+    private double troco;
 
     public Venda() {
     }
 
-    public Venda(ArrayList<Livro> livro, ArrayList<FormaPagamento> formaPagamento, double valorTotal) {
-        this.livro = livro;
-        this.formaPagamento = formaPagamento;
+    public Venda(Cliente cliente, ArrayList<ItemVenda> itens, ArrayList<FormaPagamento> formasPagamento, double valorTotal, double troco) {
+        this.cliente = cliente;
+        this.itens = itens;
+        this.formasPagamento = formasPagamento;
         this.valorTotal = valorTotal;
+        this.troco = troco;
     }
 
-    public ArrayList<Livro> getLivro() {
-        return livro;
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    public void setLivro(ArrayList<Livro> livro) {
-        this.livro = livro;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
-    public ArrayList<FormaPagamento> getFormaPagamento() {
-        return formaPagamento;
+    public ArrayList<ItemVenda> getItens() {
+        return itens;
     }
 
-    public void setFormaPagamento(ArrayList<FormaPagamento> formaPagamento) {
-        this.formaPagamento = formaPagamento;
+    public void setItens(ArrayList<ItemVenda> itens) {
+        this.itens = itens;
+    }
+
+    public ArrayList<FormaPagamento> getFormasPagamento() {
+        return formasPagamento;
+    }
+    
+    public void calculaTroco(double vlPago, double vlPagar){
+        double troco = vlPago - vlPagar;
+        this.setTroco(troco);
+    }
+
+    public void setFormasPagamento(ArrayList<FormaPagamento> formasPagamento) {
+        double vlPagar = this.getValorTotal();
+        double vlPago = 0;
+        int resumoFinal = formasPagamento.size() -1;
+        int resumo = 0;
+        
+        for(FormaPagamento formaPagamento: formasPagamento){
+            vlPago += formaPagamento.getVlrPago();
+            
+            if(vlPago < vlPagar && resumo >= resumoFinal){
+                System.out.println("Não possui mais formas de pagamento disponíveis");
+            }
+            resumo++;
+        }
+        
+            if(vlPago > vlPagar){
+                this.calculaTroco(vlPago, vlPagar);
+            }
+        this.formasPagamento = formasPagamento;
     }
 
     public double getValorTotal() {
         return valorTotal;
     }
 
-    public void setValorTotal(double valorTotal) {
-        this.valorTotal = valorTotal;
+    public void setValorTotal(ArrayList<ItemVenda> itensVenda) {
+        for(ItemVenda itemVenda: itensVenda){
+            this.valorTotal += itemVenda.getVlTotal();
+        }
     }
     
-    public void vendaAprovada(){
-        System.out.println("Venda Realizada");
+    public void gerarEstoque(ArrayList<ItemVenda> itensVenda){
+        for(ItemVenda itemVenda: itensVenda){
+            itemVenda.getLivro().remEstoque(itemVenda.getQuantidade());
+        }
+    }
+
+    public double getTroco() {
+        return troco;
+    }
+
+    public void setTroco(double troco) {
+        this.troco = troco;
     }
 
     @Override
     public String toString() {
-        return "Venda{" + "\nLivro=" + livro + 
-                "\nForma De Pagamento=" + formaPagamento + 
-                "\nValor Total=" + valorTotal + '}';
+        return "Venda{" + "Cliente=" + cliente + 
+                "\nItens=" + itens + 
+                "\nForma De Pagamento=" + formasPagamento + 
+                "\nValor Total=" + valorTotal + 
+                "\nTroco=" + troco + '}';
     }
-    
-    
 
+    
     
     
 }

@@ -9,6 +9,10 @@ public class FormaPagamento {
     public FormaPagamento() {
     }
 
+    public FormaPagamento(String tipoPagamento) {
+        this.tipoPagamento = tipoPagamento;
+    }
+
     public FormaPagamento(String tipoPagamento, double vlrPago, int parcelas) {
         this.tipoPagamento = tipoPagamento;
         this.vlrPago = vlrPago;

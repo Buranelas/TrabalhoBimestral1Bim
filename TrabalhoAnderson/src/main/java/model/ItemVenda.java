@@ -55,12 +55,21 @@ public class ItemVenda {
         return vlTotal;
     }
 
-    public void setVlTotal(double vlTotal) {
-        this.vlTotal = vlTotal;
+    public void setVlTotal(Livro livro) {
+        this.vlTotal = (livro.getVlrVenda() - this.vlDesconto) * this.quantidade;
     }
     
-    public double calcularValorTotal() {
-    return (this.vlUnitario - this.vlDesconto) * this.quantidade;
-}
+    
+
+    @Override
+    public String toString() {
+        return "ItemVenda{" + "Livro=" + livro + 
+                "\nQuantidade=" + quantidade + 
+                "\nValor Unitario=" + vlUnitario + 
+                "\nValor Desconto=" + vlDesconto + 
+                "\nValor Total=" + vlTotal + '}';
+    }
+    
+    
     
 }
